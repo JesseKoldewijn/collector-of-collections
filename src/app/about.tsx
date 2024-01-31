@@ -15,7 +15,7 @@ const Home = () => {
 
   return (
     <TwView className="flex h-full items-center justify-center">
-      <TwText>hello world</TwText>
+      <TwText>hello world - about page</TwText>
       <Suspense>
         <TwText>{testData}</TwText>
       </Suspense>
