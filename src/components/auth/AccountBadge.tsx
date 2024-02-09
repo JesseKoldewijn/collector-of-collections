@@ -1,4 +1,5 @@
-import { SignInButton, SignOutButton, SignUpButton, auth } from "@clerk/nextjs";
+import { SignInButton, SignOutButton, SignUpButton } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 
 const AccountBadge = async () => {
   const { userId } = auth();

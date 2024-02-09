@@ -1,4 +1,4 @@
-import { authMiddleware } from "@clerk/nextjs";
+import { authMiddleware } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 
 // This example protects all routes including api/trpc routes
@@ -8,7 +8,7 @@ export default authMiddleware({
   publicRoutes: ["/"],
   afterAuth: async (user, req) => {
     const isLoggedIn = user.userId;
-    const isPubPath = user.isPublicRoute;
+    const isPubPath = user.isPublicRoute || req.url === "/";
 
     if (!isLoggedIn && !isPubPath) {
       const origin = new URL(req.url).origin;
