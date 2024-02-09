@@ -22,7 +22,7 @@ export const metadata: Metadata = {
 
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   return (
-    <ClerkProvider afterSignInUrl="/dashboard">
+    <ClerkProvider>
       <html lang="en">
         <body className={`font-sans ${inter.variable}`}>
           <NavBar />

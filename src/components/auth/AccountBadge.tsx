@@ -23,14 +23,14 @@ const AccountBadge = async () => {
   return (
     <div className="flex items-center justify-center gap-2">
       <div className="flex h-10 items-center">
-        <SignInButton>
+        <SignInButton mode="modal">
           <div role="button" className="rounded-md border-2 px-2 py-1">
             Login
           </div>
         </SignInButton>
       </div>
       <div className="flex h-10 items-center">
-        <SignUpButton>
+        <SignUpButton mode="modal">
           <div role="button" className="rounded-md border-2 px-2 py-1">
             Register
           </div>
