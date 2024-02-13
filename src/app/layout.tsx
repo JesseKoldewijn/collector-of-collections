@@ -1,4 +1,3 @@
-import { ClerkProvider } from "@clerk/nextjs";
 import { type Metadata } from "next";
 import { Inter } from "next/font/google";
 
@@ -22,14 +21,12 @@ export const metadata: Metadata = {
 
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   return (
-    <ClerkProvider>
-      <html lang="en">
-        <body className={`font-sans ${inter.variable}`}>
-          <NavBar />
-          {children}
-        </body>
-      </html>
-    </ClerkProvider>
+    <html lang="en">
+      <body className={`font-sans ${inter.variable}`}>
+        <NavBar />
+        {children}
+      </body>
+    </html>
   );
 };
 

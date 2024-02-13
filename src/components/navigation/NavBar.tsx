@@ -1,7 +1,4 @@
 import Link from "next/link";
-import React from "react";
-
-import AccountBadge from "../auth/AccountBadge";
 
 const NavBar = async () => {
   return (
@@ -9,7 +6,7 @@ const NavBar = async () => {
       <Link href="/">Librarian</Link>
 
       <div className="ml-auto">
-        <AccountBadge />
+        <span>Account badge</span>
       </div>
     </div>
   );

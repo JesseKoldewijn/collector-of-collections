@@ -36,7 +36,9 @@
     "**/*.tsx",
     "**/*.cjs",
     "**/*.js",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "src/env.mjs",
+    "drizzle.db-reset.mjs"
   ],
   "exclude": ["node_modules"]
 }
