@@ -11,11 +11,12 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Librarian",
-    absolute: "Librarian",
-    template: "%s - Librarian",
+    default: "Collector of Collections",
+    absolute: "Collector of Collections",
+    template: "%s - Collector of Collections",
   },
-  description: "Librarian - A simple way to manage your book collection.",
+  description:
+    "Collector of Collections - A simple way to manage collections like books, movies, music and such.",
   icons: [{ rel: "icon", url: "/favicon.png" }],
 };
 
