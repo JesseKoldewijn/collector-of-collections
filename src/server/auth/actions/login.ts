@@ -60,5 +60,5 @@ export const loginAction = async (_: unknown, formData: FormData) => {
     sessionCookie.value,
     sessionCookie.attributes,
   );
-  return redirect("/");
+  return redirect("/dashboard");
 };

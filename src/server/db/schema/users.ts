@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { datetime, timestamp, varchar } from "drizzle-orm/mysql-core";
+import { timestamp, varchar } from "drizzle-orm/mysql-core";
 import { v4 as uuidv4 } from "uuid";
 
 import { createTable } from "../utils";
@@ -23,17 +23,4 @@ export const userTable = createTable("user", {
     .onUpdateNow(),
 });
 
-export const sessionTable = createTable("session", {
-  id: varchar("id", {
-    length: 255,
-  }).primaryKey(),
-  userId: varchar("user_id", {
-    length: 36,
-  })
-    .notNull()
-    .references(() => userTable.id),
-  expiresAt: datetime("expires_at").notNull(),
-});
-
 export type User = typeof userTable.$inferSelect;
-export type Session = typeof sessionTable.$inferSelect;

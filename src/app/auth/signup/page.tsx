@@ -8,7 +8,7 @@ import { Form } from "@/server/auth/lib/Form";
 const page = async () => {
   const { user } = await validateRequest();
   if (user) {
-    return redirect("/");
+    return redirect("/dashboard");
   }
 
   return (

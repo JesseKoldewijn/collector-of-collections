@@ -75,5 +75,5 @@ export const signupAction = async (_: unknown, formData: FormData) => {
       error: "An unknown error occurred",
     };
   }
-  return redirect("/");
+  return redirect("/dashboard");
 };
