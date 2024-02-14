@@ -11,6 +11,8 @@ import { userTable } from "@/server/db/schema/users";
 export const signupAction = async (_: unknown, formData: FormData) => {
   "use server";
   const username = formData.get("username");
+  const firstname = formData.get("firstname");
+  const lastname = formData.get("lastname");
 
   // username must be between 4 ~ 31 characters, and only consists of lowercase letters, 0-9, -, and _
   // keep in mind some database (e.g. mysql) are case insensitive
@@ -22,6 +24,26 @@ export const signupAction = async (_: unknown, formData: FormData) => {
   ) {
     return {
       error: "Invalid username",
+    };
+  }
+
+  if (
+    typeof firstname !== "string" ||
+    firstname.length < 1 ||
+    firstname.length > 50
+  ) {
+    return {
+      error: "Invalid firstname",
+    };
+  }
+
+  if (
+    typeof lastname !== "string" ||
+    lastname.length < 1 ||
+    lastname.length > 50
+  ) {
+    return {
+      error: "Invalid lastname",
     };
   }
 
@@ -54,6 +76,8 @@ export const signupAction = async (_: unknown, formData: FormData) => {
       .insert(userTable)
       .values({
         id: userId,
+        firstname: firstname,
+        lastname: lastname,
         username: username,
         password: hashedPassword,
       })

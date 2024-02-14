@@ -13,6 +13,9 @@ export const lucia = new Lucia(luciaAdapter, {
   getUserAttributes: (attributes) => {
     return {
       username: attributes.username,
+      firstname: attributes.firstname,
+      lastname: attributes.lastname,
+      role: attributes.role,
       createdAt: attributes.createdAt,
     };
   },

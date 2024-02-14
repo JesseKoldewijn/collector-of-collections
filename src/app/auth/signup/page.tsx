@@ -20,14 +20,35 @@ const page = async () => {
           className="flex w-full max-w-sm flex-col gap-2 rounded-md border-2 border-neutral-100 px-4 py-2"
         >
           <div className="flex flex-col gap-2">
+            <label htmlFor="firstname">First Name</label>
+            <input
+              name="firstname"
+              id="firstname"
+              autoComplete="given-name"
+              className="rounded-md border border-neutral-100 bg-transparent px-2 !outline-none"
+            />
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <label htmlFor="lastname">Last Name</label>
+            <input
+              name="lastname"
+              id="lastname"
+              autoComplete="family-name"
+              className="rounded-md border border-neutral-100 bg-transparent px-2 !outline-none"
+            />
+          </div>
+
+          <div className="flex flex-col gap-2">
             <label htmlFor="username">Username</label>
             <input
               name="username"
               id="username"
               autoComplete="username"
-              className="rounded-md border border-neutral-100 bg-transparent !outline-none"
+              className="rounded-md border border-neutral-100 bg-transparent px-2 !outline-none"
             />
           </div>
+
           <div className="flex flex-col gap-2">
             <label htmlFor="password">Password</label>
             <input
@@ -35,7 +56,7 @@ const page = async () => {
               name="password"
               id="password"
               autoComplete="current-password"
-              className="rounded-md border border-neutral-100 bg-transparent !outline-none"
+              className="rounded-md border border-neutral-100 bg-transparent px-2 !outline-none"
             />
           </div>
 

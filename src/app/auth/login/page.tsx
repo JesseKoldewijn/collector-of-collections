@@ -25,7 +25,7 @@ export default async function Page() {
               name="username"
               id="username"
               autoComplete="username"
-              className="rounded-md border border-neutral-100 bg-transparent !outline-none"
+              className="rounded-md border border-neutral-100 bg-transparent px-2 !outline-none"
             />
           </div>
 
@@ -36,7 +36,7 @@ export default async function Page() {
               name="password"
               id="password"
               autoComplete="current-password"
-              className="rounded-md border border-neutral-100 bg-transparent !outline-none"
+              className="rounded-md border border-neutral-100 bg-transparent px-2 !outline-none"
             />
           </div>
 
