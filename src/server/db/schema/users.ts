@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { datetime, varchar } from "drizzle-orm/mysql-core";
+import { datetime, timestamp, varchar } from "drizzle-orm/mysql-core";
 import { v4 as uuidv4 } from "uuid";
 
 import { createTable } from "../utils";
@@ -15,6 +15,12 @@ export const userTable = createTable("user", {
   password: varchar("password", {
     length: 255,
   }).notNull(),
+  createdAt: timestamp("created_at")
+    .default(sql`CURRENT_TIMESTAMP`)
+    .notNull(),
+  updatedAt: timestamp("updatedAt")
+    .default(sql`CURRENT_TIMESTAMP`)
+    .onUpdateNow(),
 });
 
 export const sessionTable = createTable("session", {

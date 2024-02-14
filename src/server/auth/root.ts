@@ -6,13 +6,15 @@ import { type User } from "@/server/db/schema/users";
 
 export const lucia = new Lucia(luciaAdapter, {
   sessionCookie: {
-    // this sets cookies with super long expiration
-    // since Next.js doesn't allow Lucia to extend cookie expiration when rendering pages
-    expires: false,
     attributes: {
-      // set to `true` when using HTTPS
       secure: env.NODE_ENV === "production",
     },
+  },
+  getUserAttributes: (attributes) => {
+    return {
+      username: attributes.username,
+      createdAt: attributes.createdAt,
+    };
   },
 });
 
@@ -27,6 +29,6 @@ export type Session = {
 declare module "lucia" {
   interface Register {
     Lucia: typeof lucia;
-    DatabaseUserAttributes: Omit<User, "id">;
+    DatabaseUserAttributes: Omit<Omit<User, "id">, "password">;
   }
 }

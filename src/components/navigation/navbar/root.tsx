@@ -2,6 +2,9 @@ import Link from "next/link";
 
 import { validateRequest } from "@/server/auth/handlers/validate-request";
 
+import LoggedInNav from "./logged-in";
+import LoggedOutNav from "./logged-out";
+
 const NavBar = async () => {
   const { user } = await validateRequest();
 
@@ -10,7 +13,7 @@ const NavBar = async () => {
       <Link href="/">Librarian</Link>
 
       <div className="ml-auto">
-        {user ? <span>Account badge</span> : <Link href="/login">Sign in</Link>}
+        {user ? <LoggedInNav user={user} /> : <LoggedOutNav />}
       </div>
     </div>
   );

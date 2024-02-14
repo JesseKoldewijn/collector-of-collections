@@ -22,5 +22,5 @@ export const logoutAction = async (): Promise<ActionResult> => {
     sessionCookie.value,
     sessionCookie.attributes,
   );
-  return redirect("/login");
+  return redirect("/auth/login");
 };
