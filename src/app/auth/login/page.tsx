@@ -29,6 +29,7 @@ export default async function Page() {
           <InputText
             inputName="password"
             inputLabel="Password"
+            inputType="password"
             autocompleteName="current-password"
           />
 
