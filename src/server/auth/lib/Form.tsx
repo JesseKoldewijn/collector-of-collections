@@ -1,5 +1,6 @@
 "use client";
 
+import { useCallback, useEffect, useState } from "react";
 import { useFormState } from "react-dom";
 
 import type { ActionResult } from "./Actions";
@@ -22,9 +23,11 @@ export function Form({
       <div className="flex w-full max-w-sm flex-col gap-2 rounded-md border-2 border-neutral-100 px-4 py-2">
         {children}
 
-        <span className="flex w-full max-w-sm items-center justify-center truncate whitespace-nowrap pb-2 text-center text-red-600">
-          {state.error}
-        </span>
+        {state.error && (
+          <span className="flex w-full max-w-sm items-center justify-center truncate whitespace-nowrap pb-2 text-center text-red-600">
+            {state.error}
+          </span>
+        )}
       </div>
     </form>
   );

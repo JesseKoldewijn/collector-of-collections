@@ -5,7 +5,7 @@ import { validateRequest } from "@/server/auth/handlers/validate-request";
 import type { ActionResult } from "@/server/auth/lib/Actions";
 import { lucia } from "@/server/auth/root";
 
-export const logout = async (): Promise<ActionResult> => {
+export const logoutAction = async (): Promise<ActionResult> => {
   "use server";
   const { session } = await validateRequest();
   if (!session) {
