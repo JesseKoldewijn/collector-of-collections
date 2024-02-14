@@ -6,7 +6,7 @@ import { Argon2id } from "oslo/password";
 
 import { lucia } from "@/server/auth/root";
 import { db } from "@/server/db/root";
-import { userSchema } from "@/server/db/schemas";
+import { userTable } from "@/server/db/schema/users";
 
 export const signupAction = async (_: unknown, formData: FormData) => {
   "use server";
@@ -38,12 +38,8 @@ export const signupAction = async (_: unknown, formData: FormData) => {
   }
 
   const userExist =
-    (
-      await db
-        .select()
-        .from(userSchema.userTable)
-        .where(eq(userSchema.userTable.username, username))
-    ).length > 0;
+    (await db.select().from(userTable).where(eq(userTable.username, username)))
+      .length > 0;
   if (userExist) {
     return {
       error: "Username is already taken",
@@ -55,7 +51,7 @@ export const signupAction = async (_: unknown, formData: FormData) => {
 
   try {
     await db
-      .insert(userSchema.userTable)
+      .insert(userTable)
       .values({
         id: userId,
         username: username,

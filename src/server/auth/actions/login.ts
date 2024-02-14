@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { Argon2id } from "oslo/password";
 
 import { db } from "@/server/db/root";
-import { userSchema } from "@/server/db/schemas";
+import { userTable } from "@/server/db/schema/users";
 
 import { lucia } from "../root";
 
@@ -34,8 +34,8 @@ export const loginAction = async (_: unknown, formData: FormData) => {
 
   const existingUser = await db
     .select()
-    .from(userSchema.userTable)
-    .where(eq(userSchema.userTable.username, username))
+    .from(userTable)
+    .where(eq(userTable.username, username))
     .execute();
 
   const extUser = existingUser?.at(0);

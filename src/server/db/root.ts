@@ -2,7 +2,10 @@ import { drizzle } from "drizzle-orm/mysql2";
 import mysql from "mysql2";
 
 import { env } from "@/env.mjs";
-import * as allSchemas from "@/server/db/schemas";
+
+import * as CollectionSchema from "./schema/collections";
+import * as SessionSchema from "./schema/sessions";
+import * as UserSchema from "./schema/users";
 
 const conn = mysql.createConnection({
   host: env.DB_HOST,
@@ -15,5 +18,9 @@ const conn = mysql.createConnection({
 
 export const db = drizzle(conn, {
   mode: "default",
-  schema: allSchemas,
+  schema: {
+    ...CollectionSchema,
+    ...SessionSchema,
+    ...UserSchema,
+  },
 });
