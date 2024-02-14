@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
+import InputPasswordConfirm from "@/components/form/InputPasswordConfirm";
+import InputText from "@/components/form/InputText";
 import { signupAction } from "@/server/auth/actions/signup";
 import { validateRequest } from "@/server/auth/handlers/validate-request";
 import { Form } from "@/server/auth/lib/Form";
@@ -19,52 +21,41 @@ const page = async () => {
           action={signupAction}
           className="flex w-full max-w-sm flex-col gap-2 rounded-md border-2 border-neutral-100 px-4 py-2"
         >
-          <div className="flex flex-col gap-2">
-            <label htmlFor="firstname">First Name</label>
-            <input
-              name="firstname"
-              id="firstname"
-              autoComplete="given-name"
-              className="rounded-md border border-neutral-100 bg-transparent px-2 !outline-none"
-            />
-          </div>
+          <InputText
+            inputName="firstname"
+            inputLabel="First Name"
+            autocompleteName="given-name"
+          />
 
-          <div className="flex flex-col gap-2">
-            <label htmlFor="lastname">Last Name</label>
-            <input
-              name="lastname"
-              id="lastname"
-              autoComplete="family-name"
-              className="rounded-md border border-neutral-100 bg-transparent px-2 !outline-none"
-            />
-          </div>
+          <InputText
+            inputName="lastname"
+            inputLabel="Last Name"
+            autocompleteName="family-name"
+          />
 
-          <div className="flex flex-col gap-2">
-            <label htmlFor="username">Username</label>
-            <input
-              name="username"
-              id="username"
-              autoComplete="username"
-              className="rounded-md border border-neutral-100 bg-transparent px-2 !outline-none"
-            />
-          </div>
+          <InputText
+            inputName="username"
+            inputLabel="Username"
+            autocompleteName="current-username"
+          />
 
-          <div className="flex flex-col gap-2">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              autoComplete="current-password"
-              className="rounded-md border border-neutral-100 bg-transparent px-2 !outline-none"
-            />
-          </div>
+          <InputText
+            inputName="password"
+            inputLabel="Password"
+            inputType="password"
+            autocompleteName="current-password"
+          />
+          <InputPasswordConfirm
+            inputName="password-confirm"
+            inputLabel="Confirm Password"
+            autocompleteName="current-password"
+          />
 
           <button className="mb-2 rounded-md border-2 border-neutral-100 px-3 py-1">
             Continue
           </button>
         </Form>
-        <Link href="/auth/login">Login</Link>
+        <Link href="/login">Login</Link>
       </div>
     </main>
   );

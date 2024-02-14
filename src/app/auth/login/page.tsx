@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
+import InputText from "@/components/form/InputText";
 import { loginAction } from "@/server/auth/actions/login";
 import { validateRequest } from "@/server/auth/handlers/validate-request";
 import { Form } from "@/server/auth/lib/Form";
@@ -19,32 +20,23 @@ export default async function Page() {
           action={loginAction}
           className="flex w-full max-w-sm flex-col gap-2 rounded-md border-2 border-neutral-100 px-4 py-2"
         >
-          <div className="flex flex-col gap-2">
-            <label htmlFor="username">Username</label>
-            <input
-              name="username"
-              id="username"
-              autoComplete="username"
-              className="rounded-md border border-neutral-100 bg-transparent px-2 !outline-none"
-            />
-          </div>
+          <InputText
+            inputName="username"
+            inputLabel="Username"
+            autocompleteName="username"
+          />
 
-          <div className="flex flex-col gap-2">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              autoComplete="current-password"
-              className="rounded-md border border-neutral-100 bg-transparent px-2 !outline-none"
-            />
-          </div>
+          <InputText
+            inputName="password"
+            inputLabel="Password"
+            autocompleteName="current-password"
+          />
 
           <button className="mb-2 rounded-md border-2 border-neutral-100 px-3 py-1">
             Continue
           </button>
         </Form>
-        <Link href="/auth/signup">Sign Up</Link>
+        <Link href="/signup">Sign Up</Link>
       </div>
     </main>
   );

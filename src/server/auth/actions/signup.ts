@@ -48,6 +48,7 @@ export const signupAction = async (_: unknown, formData: FormData) => {
   }
 
   const password = formData.get("password");
+  const passwordConfirm = formData.get("password-confirm");
 
   if (
     typeof password !== "string" ||
@@ -56,6 +57,22 @@ export const signupAction = async (_: unknown, formData: FormData) => {
   ) {
     return {
       error: "Invalid password",
+    };
+  }
+
+  if (
+    typeof passwordConfirm !== "string" ||
+    passwordConfirm.length < 6 ||
+    passwordConfirm.length > 255
+  ) {
+    return {
+      error: "Password confirmation is invalid",
+    };
+  }
+
+  if (password !== passwordConfirm) {
+    return {
+      error: "Passwords do not match",
     };
   }
 
