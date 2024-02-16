@@ -7,7 +7,7 @@ import { signupAction } from "@/server/auth/actions/signup";
 import { validateRequest } from "@/server/auth/handlers/validate-request";
 import { Form } from "@/server/auth/lib/Form";
 
-const page = async () => {
+const SignupPage = async () => {
   const { user } = await validateRequest();
   if (user) {
     return redirect("/dashboard");
@@ -61,4 +61,4 @@ const page = async () => {
   );
 };
 
-export default page;
+export default SignupPage;

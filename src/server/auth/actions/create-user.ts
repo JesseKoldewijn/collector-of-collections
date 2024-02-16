@@ -1,21 +1,19 @@
 import { eq } from "drizzle-orm";
+import generator from "generate-password";
 import { generateId } from "lucia";
-import { cookies } from "next/headers";
-import { redirect } from "next/navigation";
 import { Argon2id } from "oslo/password";
 
-import { lucia } from "@/server/auth/root";
 import { db } from "@/server/db/root";
-import { userTable } from "@/server/db/schema/users";
+import { type UserRole, userTable } from "@/server/db/schema/users";
 
-export const signupAction = async (_: unknown, formData: FormData) => {
+export const createUser = async (_: unknown, formData: FormData) => {
   "use server";
   const username = formData.get("username");
   const firstname = formData.get("firstname");
   const lastname = formData.get("lastname");
+  let password = formData.get("password");
+  let role = formData.get("role");
 
-  // username must be between 4 ~ 31 characters, and only consists of lowercase letters, 0-9, -, and _
-  // keep in mind some database (e.g. mysql) are case insensitive
   if (
     typeof username !== "string" ||
     username.length < 3 ||
@@ -47,33 +45,28 @@ export const signupAction = async (_: unknown, formData: FormData) => {
     };
   }
 
-  const password = formData.get("password");
-  const passwordConfirm = formData.get("password-confirm");
+  if (typeof role !== "string" || (role !== "admin" && role !== "user")) {
+    console.log("Invalid role", role);
+    if (!role) {
+      role = "user";
+    } else {
+      return {
+        error: "Invalid role",
+      };
+    }
+  }
 
   if (
     typeof password !== "string" ||
     password.length < 6 ||
     password.length > 255
   ) {
-    return {
-      error: "Invalid password",
-    };
-  }
-
-  if (
-    typeof passwordConfirm !== "string" ||
-    passwordConfirm.length < 6 ||
-    passwordConfirm.length > 255
-  ) {
-    return {
-      error: "Password confirmation is invalid",
-    };
-  }
-
-  if (password !== passwordConfirm) {
-    return {
-      error: "Passwords do not match",
-    };
+    password = generator.generate({
+      length: 10,
+      numbers: true,
+      symbols: true,
+      uppercase: true,
+    });
   }
 
   const userExist =
@@ -97,20 +90,25 @@ export const signupAction = async (_: unknown, formData: FormData) => {
         lastname: lastname,
         username: username,
         password: hashedPassword,
+        role: (role as UserRole) ?? "user",
       })
       .execute();
-
-    const session = await lucia.createSession(userId, {});
-    const sessionCookie = lucia.createSessionCookie(session.id);
-    cookies().set(
-      sessionCookie.name,
-      sessionCookie.value,
-      sessionCookie.attributes,
-    );
   } catch (e) {
     return {
       error: "An unknown error occurred",
     };
   }
-  return redirect("/dashboard");
+  return {
+    data: {
+      success: true,
+      userData: {
+        firstname,
+        lastname,
+        username,
+        password,
+        hashedPassword,
+        role,
+      },
+    },
+  };
 };

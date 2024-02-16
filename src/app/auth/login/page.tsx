@@ -6,7 +6,7 @@ import { loginAction } from "@/server/auth/actions/login";
 import { validateRequest } from "@/server/auth/handlers/validate-request";
 import { Form } from "@/server/auth/lib/Form";
 
-export default async function Page() {
+const Page = async () => {
   const { user } = await validateRequest();
   if (user) {
     return redirect("/dashboard");
@@ -41,4 +41,5 @@ export default async function Page() {
       </div>
     </main>
   );
-}
+};
+export default Page;

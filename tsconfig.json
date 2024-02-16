@@ -38,7 +38,8 @@
     "**/*.js",
     ".next/types/**/*.ts",
     "src/env.mjs",
-    "drizzle.db-reset.mjs"
+    "drizzle.db-reset.mjs",
+    "src/server/db/seeders/super-admin.ts"
   ],
   "exclude": ["node_modules"]
 }

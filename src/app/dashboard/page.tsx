@@ -1,14 +1,19 @@
-import { redirect } from "next/navigation";
 import React from "react";
 
 import { validateRequest } from "@/server/auth/handlers/validate-request";
+import {
+  isAdminRouteCheck,
+  isPrivateRouteCheck,
+} from "@/server/auth/role-check-routes";
 
-const page = async () => {
+const DashboardPage = async () => {
   const { user } = await validateRequest();
   if (!user) {
-    return redirect("/");
+    isPrivateRouteCheck(user);
+    return;
+  } else {
+    isAdminRouteCheck(user);
   }
-  const userRole = user.role;
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center">
@@ -17,11 +22,11 @@ const page = async () => {
           Dashboard - Welcome back {user.firstname}!
         </h1>
         <div className="flex gap-1">
-          You are logged in as a <pre>{userRole}</pre>
+          You are logged in as a <pre>{user.role}</pre>
         </div>
       </div>
     </main>
   );
 };
 
-export default page;
+export default DashboardPage;

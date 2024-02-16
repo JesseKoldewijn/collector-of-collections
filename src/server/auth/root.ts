@@ -1,13 +1,16 @@
-import { Lucia } from "lucia";
+import { Lucia, TimeSpan } from "lucia";
 
 import { env } from "@/env.mjs";
 import { luciaAdapter } from "@/server/auth/adapter";
 import { type User } from "@/server/db/schema/users";
 
 export const lucia = new Lucia(luciaAdapter, {
+  sessionExpiresIn: new TimeSpan(1, "w"),
   sessionCookie: {
+    expires: true,
     attributes: {
       secure: env.NODE_ENV === "production",
+      sameSite: "strict",
     },
   },
   getUserAttributes: (attributes) => {
