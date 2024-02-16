@@ -6,4 +6,26 @@
   :root {
     @apply bg-neutral-100 text-neutral-950 dark:bg-neutral-950 dark:text-neutral-100;
   }
+
+  .tw-select {
+    @apply relative;
+  }
+
+  select.tw-select {
+    @apply w-full cursor-pointer appearance-none rounded-md border-neutral-100 text-neutral-100;
+  }
+
+  .tw-select::before,
+  .tw-select::after {
+    --size: 0.3rem;
+    @apply pointer-events-none absolute right-4 content-none;
+  }
+
+  .tw-select::before {
+    @apply top-[44%] border-[var(--size)] border-b-black border-l-transparent border-r-transparent;
+  }
+
+  .tw-select::after {
+    @apply top-[55%] border-[var(--size)] border-l-transparent border-r-transparent border-t-black;
+  }
 }

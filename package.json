@@ -20,7 +20,7 @@
     "generate-password": "^1.7.1",
     "lucia": "^3.0.1",
     "mysql2": "^3.9.1",
-    "next": "14.1.1-canary.52",
+    "next": "14.1.1-canary.56",
     "oslo": "^1.1.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",

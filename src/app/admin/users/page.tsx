@@ -1,4 +1,5 @@
 import { eq } from "drizzle-orm";
+import Link from "next/link";
 
 import UserLister from "@/components/listers/userlister/List";
 import { validateRequest } from "@/server/auth/handlers/validate-request";
@@ -39,12 +40,12 @@ const AdminUsersPage = async () => {
           <div className="flex w-full flex-col gap-4 rounded-md border border-neutral-100 px-3 py-2">
             <strong>Actions</strong>
             <div className="flex gap-4 pb-2">
-              <button className="text-sm text-neutral-100 hover:text-neutral-300">
+              <Link
+                href="/admin/users/add"
+                className="text-sm text-neutral-100 hover:text-neutral-300"
+              >
                 Add User
-              </button>
-              <button className="text-sm text-neutral-100 hover:text-neutral-300">
-                Add Admin
-              </button>
+              </Link>
             </div>
           </div>
           <div className="flex w-full flex-col gap-4 rounded-md border border-neutral-100 px-3 py-2">

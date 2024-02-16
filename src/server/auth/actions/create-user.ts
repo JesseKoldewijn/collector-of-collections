@@ -1,12 +1,17 @@
 import { eq } from "drizzle-orm";
 import generator from "generate-password";
 import { generateId } from "lucia";
+import { redirect } from "next/navigation";
 import { Argon2id } from "oslo/password";
 
 import { db } from "@/server/db/root";
 import { type UserRole, userTable } from "@/server/db/schema/users";
 
-export const createUser = async (_: unknown, formData: FormData) => {
+export const createUser = async (
+  _: unknown,
+  formData: FormData,
+  returnData = false,
+) => {
   "use server";
   const username = formData.get("username");
   const firstname = formData.get("firstname");
@@ -98,17 +103,21 @@ export const createUser = async (_: unknown, formData: FormData) => {
       error: "An unknown error occurred",
     };
   }
-  return {
-    data: {
-      success: true,
-      userData: {
-        firstname,
-        lastname,
-        username,
-        password,
-        hashedPassword,
-        role,
+
+  if (returnData) {
+    return {
+      data: {
+        success: true,
+        userData: {
+          firstname,
+          lastname,
+          username,
+          password,
+          hashedPassword,
+          role,
+        },
       },
-    },
-  };
+    };
+  }
+  return redirect("/admin/users");
 };

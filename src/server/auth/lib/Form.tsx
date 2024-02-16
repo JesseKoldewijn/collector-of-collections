@@ -37,7 +37,7 @@ export const Form = ({
     <form action={formAction} className={className} {...rest}>
       {children}
 
-      {displayErrors !== false && state.error && (
+      {displayErrors !== false && state && (
         <span
           className={cn(
             "flex w-full max-w-sm items-center justify-center truncate whitespace-nowrap pb-2 text-center text-red-600",
