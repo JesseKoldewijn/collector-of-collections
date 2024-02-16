@@ -33,7 +33,7 @@ const Page = async () => {
             autocompleteName="current-password"
           />
 
-          <button className="mb-2 rounded-md border-2 border-neutral-100 px-3 py-1">
+          <button className="mt-2 rounded-md border-2 border-neutral-100 px-3 py-1">
             Continue
           </button>
         </Form>

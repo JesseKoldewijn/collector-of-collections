@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 import InputPasswordConfirm from "@/components/form/InputPasswordConfirm";
 import InputText from "@/components/form/InputText";
@@ -12,6 +12,9 @@ const SignupPage = async () => {
   if (user) {
     return redirect("/dashboard");
   }
+
+  // disabling page for now
+  return notFound();
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center">
@@ -51,7 +54,7 @@ const SignupPage = async () => {
             autocompleteName="current-password"
           />
 
-          <button className="mb-2 rounded-md border-2 border-neutral-100 px-3 py-1">
+          <button className="mt-2 rounded-md border-2 border-neutral-100 px-3 py-1">
             Continue
           </button>
         </Form>
