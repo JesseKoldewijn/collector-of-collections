@@ -11,6 +11,18 @@ import { lucia } from "../root";
 export const loginAction = async (_: unknown, formData: FormData) => {
   "use server";
   const username = formData.get("username");
+
+  const biometrics = formData.get("biometrics");
+
+  const biometricsCapturing = biometrics === "capturing";
+  const biometricsEmpty = biometrics === "" || biometrics === null;
+
+  console.log({ biometrics, biometricsCapturing, biometricsEmpty });
+
+  if (biometricsCapturing || !biometricsEmpty) {
+    return;
+  }
+
   if (
     typeof username !== "string" ||
     username.length < 3 ||

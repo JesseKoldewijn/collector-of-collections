@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
+import { BiometricsAuth } from "@/components/form/Biometrics/Root";
 import InputText from "@/components/form/InputText";
 import { loginAction } from "@/server/auth/actions/login";
 import { validateRequest } from "@/server/auth/handlers/validate-request";
@@ -33,11 +34,16 @@ const Page = async () => {
             autocompleteName="current-password"
           />
 
-          <button className="mt-2 rounded-md border-2 border-neutral-100 px-3 py-1">
-            Continue
+          <button
+            type="submit"
+            className="mt-2 rounded-md border-2 border-neutral-100 px-3 py-1"
+          >
+            Login
           </button>
+
+          <BiometricsAuth className="flex justify-center pt-4" />
         </Form>
-        <Link href="/signup">Sign Up</Link>
+        {/* <Link href="/signup">Sign Up</Link> */}
       </div>
     </main>
   );

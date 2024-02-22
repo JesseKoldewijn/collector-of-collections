@@ -54,7 +54,10 @@ const SignupPage = async () => {
             autocompleteName="current-password"
           />
 
-          <button className="mt-2 rounded-md border-2 border-neutral-100 px-3 py-1">
+          <button
+            type="submit"
+            className="mt-2 rounded-md border-2 border-neutral-100 px-3 py-1"
+          >
             Continue
           </button>
         </Form>

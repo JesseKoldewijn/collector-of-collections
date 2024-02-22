@@ -10,6 +10,8 @@ export const env = createEnv({
     NODE_ENV: z
       .enum(["development", "test", "production"])
       .default("development"),
+    VERCEL_URL: z.string(),
+    BIOMETRICS_SECRET: z.string(),
     DB_HOST: z.string(),
     DB_PORT: z.string(),
     DB_USER: z.string(),
@@ -32,6 +34,8 @@ export const env = createEnv({
    */
   runtimeEnv: {
     NODE_ENV: process.env.NODE_ENV,
+    VERCEL_URL: process.env.VERCEL_URL,
+    BIOMETRICS_SECRET: process.env.BIOMETRICS_SECRET,
     DB_HOST: process.env.DB_HOST,
     DB_PORT: process.env.DB_PORT,
     DB_USER: process.env.DB_USER,
