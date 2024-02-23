@@ -20,7 +20,9 @@ export const loginAction = async (_: unknown, formData: FormData) => {
   console.log({ biometrics, biometricsCapturing, biometricsEmpty });
 
   if (biometricsCapturing || !biometricsEmpty) {
-    return;
+    return {
+      error: undefined,
+    };
   }
 
   if (
